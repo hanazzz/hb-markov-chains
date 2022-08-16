@@ -61,14 +61,30 @@ def make_chains(text_string):
 
     return chains
 
-make_chains(text)
+chains = make_chains(text)
 
 def make_text(chains):
     """Return text from chains."""
-
     words = []
+    key_lst = list(chains.keys())
 
-    # your code goes here
+    # SETTING UP INITIAL KEY-VALUE
+    current_key = choice(key_lst)
+    current_value = choice(chains[current_key])
+    words.extend([current_key[0], current_key[1], current_value])
+
+    # CONTINUE BY ITERATING THROUGH CHAINS
+    while True: 
+        try:
+            current_key = (current_key[1], current_value)
+            current_value = choice(chains[current_key])
+        except:
+            break
+        words.append(current_value)
+        # try/except : if except then break out of loop
+        # current_key = use the second word in the last key + the value as new key
+        # random_value = choice(chains[random_key])
+        # append random_value to words (list)
 
     return ' '.join(words)
 
