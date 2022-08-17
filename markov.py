@@ -45,6 +45,8 @@ def make_chains(text_string):
     chains = {}
     words = text_string.split()
 
+    
+    
     for i in range(len(words)-2):
         if chains.get((words[i], words[i+1])) == None:
             chains[(words[i], words[i+1])] = [words[i+2]]
@@ -66,9 +68,22 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
     key_lst = list(chains.keys())
+    
+
+    # (word, word2)
+
 
     # SETTING UP INITIAL KEY-VALUE
-    current_key = choice(key_lst)
+    #when we're selecting the key list 
+    #make sure we pick a key where the first word in that tuple is capitalized
+    #if key[0][0]
+    capital_letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    while True: 
+        current_key = choice(key_lst)
+        first_letter = current_key[0][0]
+        if first_letter in capital_letters:
+            break
+
     current_value = choice(chains[current_key])
     words = [current_key[0], current_key[1], current_value]
 
