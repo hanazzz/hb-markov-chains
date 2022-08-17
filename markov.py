@@ -87,6 +87,7 @@ def make_text(chains):
     current_value = choice(chains[current_key])
     words = [current_key[0], current_key[1], current_value]
 
+    punctuation_list = ".?!"
     # CONTINUE BY ITERATING THROUGH CHAINS
     while True: 
         try:
@@ -95,6 +96,11 @@ def make_text(chains):
         except:
             break
         words.append(current_value)
+        # current_value is the last thing that gets added, so need to use that to check for punctuation
+        # if the last char in current_value == any punctuation mark
+            # break
+        if current_value[-1] in punctuation_list:
+            break
         # try/except : if except then break out of loop
         # current_key = use the second word in the last key + the value as new key
         # random_value = choice(chains[random_key])
